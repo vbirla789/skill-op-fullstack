@@ -1,0 +1,1312 @@
+{
+	"info": {
+		"_postman_id": "a7499304-67ee-491c-bbf9-aaa5d70c5a02",
+		"name": "SkillOP",
+		"description": "This is a social media platform the connects mentors and mentee",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25553200"
+	},
+	"item": [
+		{
+			"name": "User Auth",
+			"item": [
+				{
+					"name": "User Registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"swaroop@x.com\",\r\n    \"password\": \"swaroop\",\r\n    \"firstname\": \"swaroop\",\r\n    \"lastname\": \"dora\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						},
+						"description": "This is user registrstion with password validation, email validation, empty data validation. On registration the user is logged in automatically. And auth details like jwt tokens are stored in cookies on register for and is valid for fixed number of days.\n\nPassword provided is encrypted before saving to the database."
+					},
+					"response": [
+						{
+							"name": "User already exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"swaroop@dora.com\",\r\n    \"password\": \"123456\",\r\n    \"firstname\": \"Swaroop\",\r\n    \"lastname\": \"Dora\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/user/resister",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"user",
+										"resister"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-2Ukw2mIb8fIzk+AY+iQ/Wkj2Qac\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Aug 2023 18:03:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": false,\n    \"err\": \"User already exist with this email\"\n}"
+						},
+						{
+							"name": "Email validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"swaroopdora.com\",\r\n    \"password\": \"123456\",\r\n    \"firstname\": \"Swaroop\",\r\n    \"lastname\": \"Dora\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/user/resister",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"user",
+										"resister"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "102"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"66-g02OCa/XHiMvDQ8oOSgwfCZGKOI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Aug 2023 18:04:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": false,\n    \"err\": \"users validation failed: email: swaroopdora.com is not a valid email address!\"\n}"
+						},
+						{
+							"name": "PassWord validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"swaroop@dor.com\",\r\n    \"password\": \"12345\",\r\n    \"firstname\": \"Swaro\",\r\n    \"lastname\": \"Dora\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/user/resister",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"user",
+										"resister"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"60-TECWWGpoaaRjB3IEJmHIIJKNnjE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Aug 2023 18:05:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": false,\n    \"err\": \"users validation failed: password: Password must be atleast 6 character\"\n}"
+						}
+					]
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"swaroop@x.com\",\r\n    \"password\":\"swaroop\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						},
+						"description": "`Email is checked for existance.`\n\nProvided password is checked against the encrypted password created earlier."
+					},
+					"response": [
+						{
+							"name": "User Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"swaroop@x.com\",\r\n    \"password\":\"swaroop\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/user/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGQ3MzQxNWU5OWFlMGMxMGRhMTYzZjgiLCJpYXQiOjE2OTE4MjU0NTAsImV4cCI6MTY5MjQzMDI1MH0.MKkhGlcHU4Doa2M95yNP4n-gF9qqWSfyaMVkt9rsIGc; Path=/; Expires=Mon, 11 Sep 2023 07:30:50 GMT; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "671"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29f-8eLrm4XTRuUtACh+3LdLqFIzxAw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Aug 2023 07:30:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User logged in successfully\",\n    \"result\": {\n        \"user\": {\n            \"_id\": \"64d73415e99ae0c10da163f8\",\n            \"firstname\": \"swaroop\",\n            \"lastname\": \"dora\",\n            \"email\": \"swaroop@x.com\",\n            \"password\": \"$2b$10$Yq8go9zYEDcGEkGsOxCSEekZ7x3udVo77xfiOl8O5RV1flyWWA1fS\",\n            \"posts\": [\n                \"64d73475e99ae0c10da163fb\"\n            ],\n            \"connects\": [],\n            \"followers\": [],\n            \"followings\": [],\n            \"isMentor\": false,\n            \"skills\": [],\n            \"jobTitle\": \"student\",\n            \"upiId\": \"\",\n            \"linkedinId\": \"\",\n            \"about\": \"\",\n            \"pastExp\": \"\",\n            \"futurePlans\": \"\",\n            \"exp\": \"\",\n            \"__created\": \"2023-08-12T07:26:13.066Z\",\n            \"__v\": 1\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGQ3MzQxNWU5OWFlMGMxMGRhMTYzZjgiLCJpYXQiOjE2OTE4MjU0NTAsImV4cCI6MTY5MjQzMDI1MH0.MKkhGlcHU4Doa2M95yNP4n-gF9qqWSfyaMVkt9rsIGc\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/user/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"123456\",\r\n    \"oldPassword\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/changePassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"changePassword"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "All the Api related to user Auth."
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"This is a new Post\",\r\n    \"caption\": \"costom caption\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/post/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"create"
+							]
+						},
+						"description": "Post is created and added to the user"
+					},
+					"response": [
+						{
+							"name": "Create Post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"This is a new Post 2\",\r\n    \"caption\": \"costom caption 2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/post/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"post",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "320"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"140-WXlJpeuZeYFJ0WpeRpUmnyqmXC0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Aug 2023 07:33:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": true,\n    \"message\": \"Post created successfully\",\n    \"post\": {\n        \"__created\": \"2023-08-12T07:23:40.853Z\",\n        \"__lastEdited\": \"2023-08-12T07:23:40.853Z\",\n        \"title\": \"This is a new Post 2\",\n        \"author\": \"64d73415e99ae0c10da163f8\",\n        \"caption\": \"costom caption 2\",\n        \"imageUrls\": [],\n        \"likes\": [],\n        \"_id\": \"64d735b7e99ae0c10da1640c\",\n        \"comments\": [],\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Like/Dislike",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "post likers (User) are added to its liked list."
+					},
+					"response": [
+						{
+							"name": "Like/Dislike",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/post/like/64d719b7d9f2ef8468655907",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"post",
+										"like",
+										"64d719b7d9f2ef8468655907"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-bLmYIen3sgIdKyLAFoQCGL5igSw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Aug 2023 07:35:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": true,\n    \"message\": \"Post liked successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/post/delete/64d7358fe99ae0c10da16402",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"delete",
+								"64d7358fe99ae0c10da16402"
+							]
+						},
+						"description": "After verification of auth and ownership of the post only then post is deleted. Also all the comments of the post is deleted."
+					},
+					"response": [
+						{
+							"name": "Delete Post",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/post/delete/64d7358fe99ae0c10da16402",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"post",
+										"delete",
+										"64d7358fe99ae0c10da16402"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-6vV5BbfC5ZNpLhvNp7SQ+kBjeB4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Aug 2023 07:33:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": false,\n    \"err\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Posts from following",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/post/from/followings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"from",
+								"followings"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Posts from following",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/post/from/followings",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"post",
+										"from",
+										"followings"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "25"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19-2PLihOo4Te5BuWnKNuPGUe33gZk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Aug 2023 07:33:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": true,\n    \"post\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Post from specific user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/post/from/64d71985d9f2ef84686558ff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"from",
+								"64d71985d9f2ef84686558ff"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Post from specific user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/post/from/64d71985d9f2ef84686558ff",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"post",
+										"from",
+										"64d71985d9f2ef84686558ff"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "522"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20a-lho4D1yqY0NrNIV1Ig3CT4j1X80\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Aug 2023 07:33:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": true,\n    \"post\": [\n        {\n            \"_id\": \"64d719acd9f2ef8468655902\",\n            \"__created\": \"2023-08-12T05:32:41.008Z\",\n            \"__lastEdited\": \"2023-08-12T05:32:41.008Z\",\n            \"title\": \"New Post100\",\n            \"author\": \"64d71985d9f2ef84686558ff\",\n            \"caption\": \"New caption100\",\n            \"imageUrls\": [],\n            \"likes\": [],\n            \"comments\": [],\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"64d719b7d9f2ef8468655907\",\n            \"__created\": \"2023-08-12T05:32:41.008Z\",\n            \"__lastEdited\": \"2023-08-12T05:32:41.008Z\",\n            \"title\": \"New Post200\",\n            \"author\": \"64d71985d9f2ef84686558ff\",\n            \"caption\": \"New caption200\",\n            \"imageUrls\": [],\n            \"likes\": [],\n            \"comments\": [],\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get specific post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/post/64d719acd9f2ef8468655902",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"64d719acd9f2ef8468655902"
+							]
+						},
+						"description": "returns the posts with comment and author details"
+					},
+					"response": [
+						{
+							"name": "Get specific post",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/post/64d719acd9f2ef8468655902",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"post",
+										"64d719acd9f2ef8468655902"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "271"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10f-mYmKSvo06hfz76HYZiNCcD4K+28\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Aug 2023 07:34:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": true,\n    \"post\": {\n        \"_id\": \"64d719acd9f2ef8468655902\",\n        \"__created\": \"2023-08-12T05:32:41.008Z\",\n        \"__lastEdited\": \"2023-08-12T05:32:41.008Z\",\n        \"title\": \"New Post100\",\n        \"author\": \"64d71985d9f2ef84686558ff\",\n        \"caption\": \"New caption100\",\n        \"imageUrls\": [],\n        \"likes\": [],\n        \"comments\": [],\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Posts from all User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/post/from/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"from",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Posts from all User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/post/from/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"post",
+										"from",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1038"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40e-thRYHOXcFpAvY7xatlWe5lc2ivA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Aug 2023 07:34:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": true,\n    \"post\": [\n        {\n            \"_id\": \"64d719acd9f2ef8468655902\",\n            \"__created\": \"2023-08-12T05:32:41.008Z\",\n            \"__lastEdited\": \"2023-08-12T05:32:41.008Z\",\n            \"title\": \"New Post100\",\n            \"author\": \"64d71985d9f2ef84686558ff\",\n            \"caption\": \"New caption100\",\n            \"imageUrls\": [],\n            \"likes\": [],\n            \"comments\": [],\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"64d719b7d9f2ef8468655907\",\n            \"__created\": \"2023-08-12T05:32:41.008Z\",\n            \"__lastEdited\": \"2023-08-12T05:32:41.008Z\",\n            \"title\": \"New Post200\",\n            \"author\": \"64d71985d9f2ef84686558ff\",\n            \"caption\": \"New caption200\",\n            \"imageUrls\": [],\n            \"likes\": [],\n            \"comments\": [],\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"64d73475e99ae0c10da163fb\",\n            \"__created\": \"2023-08-12T07:23:40.853Z\",\n            \"__lastEdited\": \"2023-08-12T07:23:40.853Z\",\n            \"title\": \"This is a new Post\",\n            \"author\": \"64d73415e99ae0c10da163f8\",\n            \"caption\": \"costom caption\",\n            \"imageUrls\": [],\n            \"likes\": [],\n            \"comments\": [],\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"64d735b7e99ae0c10da1640c\",\n            \"__created\": \"2023-08-12T07:23:40.853Z\",\n            \"__lastEdited\": \"2023-08-12T07:23:40.853Z\",\n            \"title\": \"This is a new Post 2\",\n            \"author\": \"64d73415e99ae0c10da163f8\",\n            \"caption\": \"costom caption 2\",\n            \"imageUrls\": [],\n            \"likes\": [],\n            \"comments\": [],\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Swaroop\",\r\n    \"caption\": \"Hello\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/post/update/64d78c2df10267e4895eb21a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"update",
+								"64d78c2df10267e4895eb21a"
+							]
+						},
+						"description": "This is a flexiable api will work if not all the artributes are set in body. that is if you want to only update caption the send only caption in body."
+					},
+					"response": []
+				}
+			],
+			"description": "In this section user can ->\n\n- create post\n- like/Unlike post\n- to be updated..."
+		},
+		{
+			"name": "User Follow/Unfollow",
+			"item": [
+				{
+					"name": "Follow Unfollow",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/user/follow/64da300de9d495b62e1748b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"follow",
+								"64da300de9d495b62e1748b9"
+							]
+						},
+						"description": "requesting this url will follow the userid provided and unfollow if followed already"
+					},
+					"response": []
+				}
+			],
+			"description": "Here all the user functionlaties are kept"
+		},
+		{
+			"name": "User Profiles",
+			"item": [
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"swaroop@y.com\",\r\n    \"firstname\":\"swaroop1\",\r\n    \"lastname\":\"dora1\",\r\n    \"isMentor\": true,\r\n    \"skills\": [\"c++\", \"java\", \"node\"],\r\n    \"jobTitle\": \"freelancer\",\r\n    \"educationInstitution\": \"IIITA\",\r\n    \"startYear\": \"2022\",\r\n    \"endYear\": \"2026\",\r\n    \"whatsappNumber\": \"9348114480\",\r\n    \"upiId\": \"xyz.doda@paytm\",\r\n    \"linkedinId\": \"https://www.linkedin.com/in/swaroopdora/\",\r\n    \"about\": \"ALL *\",\r\n    \"pastExp\": \"Node\",\r\n    \"futurePlans\": \"Ok\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/update/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"update",
+								"profile"
+							]
+						},
+						"description": "A very adoptive and flexiable and efficent api!\n\nThis api is very adoptive you can update any property of the user profile through it. Keep in mind that the property that you donot want to update just donot mention those property.\n\nFor example if you want to change isMentor and skills then send the following body ->\n\n{  \n\"isMentor\": true,  \n\"skills\": \\[\"c++\", \"java\", \"node\"\\],  \n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Search User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchTerm\": \"freelancer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/profile/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"profile",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/user/profile/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"profile",
+								"me"
+							]
+						},
+						"description": "This api provides all the logged in user data and all the post created by him/her and all the followers and followings."
+					},
+					"response": []
+				},
+				{
+					"name": "Specific user profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/user/profile/64d69a2abfa1a5e37d7ea6b6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"profile",
+								"64d69a2abfa1a5e37d7ea6b6"
+							]
+						},
+						"description": "URL format: http://localhost:4000/api/user/profile/{_id}\r\n\r\nThis api will provide all the details of the user id provided like posts, followers, following and other details."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/user/profile/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"profile",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post comments",
+			"item": [
+				{
+					"name": "Add comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\" : \"hello\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/post/comment/add/64d7df2b389834f4602bb976",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"comment",
+								"add",
+								"64d7df2b389834f4602bb976"
+							]
+						},
+						"description": "To add comment to a post\n\n// http://localhost:4000/api/post/comment/add/postID"
+					},
+					"response": []
+				},
+				{
+					"name": "comment delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/post/comment/delete/64d84e04b36f3094dd915f55",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"comment",
+								"delete",
+								"64d84e04b36f3094dd915f55"
+							]
+						},
+						"description": "A comment can only be deleted by its author or by the author of the post on which the comment is on.\n\nif the persion wanting to delete the comment is neither the author of the post or the author of the comment then he canot delete it.\n\n// http://localhost:4000/api/post/comment/delete/commentID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Forget Password",
+			"item": [
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/password/reset/7f0d1824d516bcf5f88dc17029b4f8ee8b446e35",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"password",
+								"reset",
+								"7f0d1824d516bcf5f88dc17029b4f8ee8b446e35"
+							]
+						},
+						"description": "On calling with the mail forget password api a token will be send to the user mail. on giving that tokkn as param and password through body, the password will resetted"
+					},
+					"response": []
+				},
+				{
+					"name": "Forget Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"automatefreely@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/user/password/forget",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"password",
+								"forget"
+							]
+						},
+						"description": "Provide the email through the body that user want to reset."
+					},
+					"response": []
+				}
+			],
+			"description": "These two api will help user to get back the user his account"
+		},
+		{
+			"name": "User Notification",
+			"item": [
+				{
+					"name": "User Notifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/user/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"user",
+								"notifications"
+							]
+						},
+						"description": "All the notification of received by the user by verious events.  \ncurrently imo=plemented for ->\n\n1. POST: \"post\",   \n    \n2. COMMENT: \"comment\",   \n    \n3. LIKE: \"like\",   \n    \n4. FOLLOW: \"follow\",   \n    \n5. PASSWORD_RESET_REQUEST: \"password_reset_request\",   \n    \n6. PASSWORD_CHANGED: \"password_changed\",\n    \n\nFollowing enum can be used to differentiate different notification\n\nconst NotificationType = {    POST: \"post\",    COMMENT: \"comment\",    LIKE: \"like\",    FOLLOW: \"follow\",    PASSWORD_RESET_REQUEST: \"password_reset_request\",    PASSWORD_CHANGED: \"password_changed\",};"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
